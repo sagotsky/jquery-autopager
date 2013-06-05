@@ -18,9 +18,9 @@
 			start: function() {},
 			load: function() {},
 			disabled: false,
-      permalink: true,
-      noAutoScroll: 4,
-      more_link: '<a>Load more</a>',
+            permalink: true,
+            noAutoScroll: 4,
+            more_link: '<a>Load more</a>',
 		};
 
 	$.autopager = function(_options) {
@@ -163,6 +163,9 @@
 			nextPage = $('<div/>').append(res.replace(/<script(.|\s)*?\/script>/g, "")),
 			nextContent = nextPage.find(_options.content); 
 
+        if (nextUrl && options.permalink && (typeof window.history.replaceState == 'function')) {     
+              window.history.replaceState({}, document.title, nextUrl);
+        } 
 
 
 		set('page', _options.page + 1);
