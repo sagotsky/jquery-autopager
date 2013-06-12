@@ -55,7 +55,7 @@
 		
 		if (_options.link_prev) {
 		  prevUrl = $(_options.link_prev).attr('href');
-      if (prevUrl && prevUrl.match(/page=/)) {
+      if (prevUrl && currentUrl.match(_options.page_arg)) {
         var load_prev_link = '<div id="autopager-load-prev">' + options.prev_text + '</div>';
         $(load_prev_link).insertBefore('#content').click($.autopager.load_prev);
       } 
@@ -104,7 +104,7 @@
 		},
 		
 		urlGetArg: function (arg, url) {
-		  if (url.indexOf('?') > 0) {
+		  if (url && (url.indexOf('?') > 0)) {
   		  args = url.split('?')[1].split('&');
   		  for (a in args) {
   		    if (args[a].split('=')[0] == arg) {
@@ -199,6 +199,8 @@
 			nextNum = parseInt($.autopager.urlGetArg(_options.page_arg, nextLink)),
 			currentNum = parseInt($.autopager.urlGetArg(_options.page_arg, currentUrl)),
 			loadingPrevious = ((typeof(_options.link_prev) == 'string') && nextNum <= currentNum);
+		
+		console.log({nextPage:nextPage,nextContent:nextContent,nextLink:nextLink,nextNum:nextNum,currentNum:currentNum})
 					
     if (nextUrl && options.permalink && (typeof window.history.replaceState == 'function')) {     
           window.history.replaceState({}, document.title, nextUrl);
