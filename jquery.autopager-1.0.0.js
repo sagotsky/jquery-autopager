@@ -128,7 +128,6 @@
 		
 		load_prev: function() {
 		  if (active || !prevUrl || options.disabled || !options.link_prev) {
-		    console.log({prevUrl:prevUrl})
         return;
       }
       $('#autopager-load-prev').remove();
@@ -199,9 +198,7 @@
 			nextNum = parseInt($.autopager.urlGetArg(_options.page_arg, nextLink)),
 			currentNum = parseInt($.autopager.urlGetArg(_options.page_arg, currentUrl)),
 			loadingPrevious = ((typeof(_options.link_prev) == 'string') && nextNum <= currentNum);
-		
-		console.log({nextPage:nextPage,nextContent:nextContent,nextLink:nextLink,nextNum:nextNum,currentNum:currentNum})
-					
+							
     if (nextUrl && options.permalink && (typeof window.history.replaceState == 'function')) {     
           window.history.replaceState({}, document.title, nextUrl);
     } 
